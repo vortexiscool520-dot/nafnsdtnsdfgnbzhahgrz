@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Learn HTML - Interactive Course</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#0f172a;
+color:white;
+}
+
+header{
+background:#020617;
+padding:20px;
+text-align:center;
+font-size:28px;
+}
+
+.container{
+display:flex;
+height:calc(100vh - 70px);
+}
+
+.sidebar{
+width:260px;
+background:#020617;
+padding:15px;
+overflow:auto;
+border-right:2px solid #1e293b;
+}
+
+.sidebar button{
+width:100%;
+padding:10px;
+margin:6px 0;
+background:#1e293b;
+border:none;
+color:white;
+cursor:pointer;
+}
+
+.sidebar button:hover{
+background:#334155;
+}
+
+.main{
+flex:1;
+display:flex;
+flex-direction:column;
+}
+
+.lesson{
+padding:20px;
+overflow:auto;
+background:#0f172a;
+border-bottom:2px solid #1e293b;
+}
+
+.practice{
+display:flex;
+flex:1;
+}
+
+textarea{
+width:50%;
+background:#020617;
+color:#38bdf8;
+border:none;
+padding:15px;
+font-family:monospace;
+font-size:14px;
+}
+
+iframe{
+width:50%;
+border:none;
+background:white;
+}
+
+.run{
+background:#22c55e;
+border:none;
+padding:10px 15px;
+margin-top:10px;
+cursor:pointer;
+color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>Learn HTML Interactive Course</header>
+
+<div class="container">
+
+<div class="sidebar">
+
+<button onclick="loadLesson(0)">Intro to HTML</button>
+<button onclick="loadLesson(1)">Headings</button>
+<button onclick="loadLesson(2)">Paragraphs</button>
+<button onclick="loadLesson(3)">Links</button>
+<button onclick="loadLesson(4)">Images</button>
+<button onclick="loadLesson(5)">Lists</button>
+<button onclick="loadLesson(6)">Your First Page</button>
+
+</div>
+
+<div class="main">
+
+<div class="lesson" id="lesson"></div>
+
+<div style="padding:10px">
+<button class="run" onclick="runCode()">Run Code</button>
+</div>
+
+<div class="practice">
+
+<textarea id="editor"><h1>Hello World</h1>
+<p>Edit this code and press Run.</p></textarea>
+
+<iframe id="preview"></iframe>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const lessons = [
+
+{
+title:"Intro to HTML",
+text:`
+<h2>Introduction to HTML</h2>
+<p>HTML stands for <b>HyperText Markup Language</b>.</p>
+
+<p>It is used to create websites.</p>
+
+<p>HTML uses <b>tags</b> like this:</p>
+
+<pre>&lt;h1&gt;Hello&lt;/h1&gt;</pre>
+
+<p>Try editing the code below!</p>
+`
+},
+
+{
+title:"Headings",
+text:`
+<h2>HTML Headings</h2>
+
+<p>Headings define titles.</p>
+
+<pre>
+&lt;h1&gt;Main Title&lt;/h1&gt;
+&lt;h2&gt;Subtitle&lt;/h2&gt;
+&lt;h3&gt;Section&lt;/h3&gt;
+</pre>
+
+<p>h1 is the biggest heading.</p>
+`
+},
+
+{
+title:"Paragraphs",
+text:`
+<h2>Paragraphs</h2>
+
+<p>Paragraphs use the &lt;p&gt; tag.</p>
+
+<pre>
+&lt;p&gt;This is a paragraph&lt;/p&gt;
+</pre>
+
+<p>Try writing your own paragraph.</p>
+`
+},
+
+{
+title:"Links",
+text:`
+<h2>Links</h2>
+
+<p>Links connect pages together.</p>
+
+<pre>
+&lt;a href="https://google.com"&gt;Visit Google&lt;/a&gt;
+</pre>
+`
+},
+
+{
+title:"Images",
+text:`
+<h2>Images</h2>
+
+<p>You can add images with the img tag.</p>
+
+<pre>
+&lt;img src="https://picsum.photos/200"&gt;
+</pre>
+`
+},
+
+{
+title:"Lists",
+text:`
+<h2>Lists</h2>
+
+<p>Lists group items together.</p>
+
+<pre>
+&lt;ul&gt;
+&lt;li&gt;Apple&lt;/li&gt;
+&lt;li&gt;Banana&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+`
+},
+
+{
+title:"Your First Page",
+text:`
+<h2>Your First HTML Page</h2>
+
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+&lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;p&gt;My first website&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>Congratulations 🎉 you're learning HTML!</p>
+`
+}
+
+]
+
+function loadLesson(i){
+document.getElementById("lesson").innerHTML = lessons[i].text
+}
+
+function runCode(){
+let code=document.getElementById("editor").value
+let frame=document.getElementById("preview").contentWindow.document
+frame.open()
+frame.write(code)
+frame.close()
+}
+
+loadLesson(0)
+runCode()
+
+</script>
+
+</body>
+</html>
